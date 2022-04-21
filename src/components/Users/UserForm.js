@@ -7,7 +7,14 @@ const UserForm = (props) => {
 
     const formHandler = (event) => { 
         event.preventDefault();
+
+        if (enteredFullName.trim().length === 0 || enteredEmail.trim().length === 0 || enteredPassword.trim().length === 0) {
+            return;  
+        };
         props.onAddUser(enteredFullName, enteredEmail, enteredPassword)
+        setEnteredFullName('')
+        setEnteredEmail('')
+        setEnteredPassword('')
     };
 
     const nameHandler = (event) => { 
