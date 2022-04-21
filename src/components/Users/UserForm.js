@@ -1,20 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 const UserForm = (props) => { 
+    const [enteredFullName, setEnteredFullName] = useState('');
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
+
+    const formHandler = (event) => { 
+        event.preventDefault();
+        props.onAddUser(enteredFullName, enteredEmail, enteredPassword)
+    };
+
+    const nameHandler = (event) => { 
+        setEnteredFullName(event.target.value);
+
+    };
+    const emailHandler = (event) => { 
+        setEnteredEmail(event.target.value);
+        
+    };
+    const passwordHandler = (event) => { 
+
+        setEnteredPassword(event.target.value);
+        
+    };
+
+
+        
       
     return <div>
-        <form>
+        <form onSubmit={formHandler}>
             <div>
-            <label>Full Name:</label>
-            <input type="text" />
+            <label htmlFor="fullname">Full Name:</label>
+                <input id="fullname" type="text" value={enteredFullName} onChange={nameHandler}/>
             </div>
             <div>
-            <label>Email:</label>
-            <input type="email" />
+            <label htmlFor="email" >Email:</label>
+                <input id="email" type="email" value={enteredEmail} onChange={emailHandler}/>
             </div>
             <div>
-            <label>Password:</label>
-            <input type="password" />
+            <label htmlFor="password">Password:</label>
+                <input id="password" type="password" value={enteredPassword} onChange={passwordHandler}/>
             </div>
             <button type="submit">submit</button>
 
