@@ -1,7 +1,9 @@
 import React from "react";
-
+import './DisplayUser.css';
+import Card from "../UI/Card";
 const DisplayUser = (props) => { 
-    return <table>
+    return <Card>
+    <table>
         <tr>
             <th>Full Name</th>
             <th>Email</th>       
@@ -11,7 +13,8 @@ const DisplayUser = (props) => {
             <td>{user.Email}</td>
         </tr>)}
         
-    </table>
+        </table>
+        </Card>
 };
 
 export default DisplayUser

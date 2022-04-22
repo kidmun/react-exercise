@@ -1,14 +1,23 @@
 import React, { useState } from "react";
+import ErrorModal from "../UI/ErrorModal";
+import Button from "../UI/Button";
+
 
 const UserForm = (props) => { 
     const [enteredFullName, setEnteredFullName] = useState('');
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredPassword, setEnteredPassword] = useState('');
+    const [error, setError] = useState();
 
     const formHandler = (event) => { 
         event.preventDefault();
 
         if (enteredFullName.trim().length === 0 || enteredEmail.trim().length === 0 || enteredPassword.trim().length === 0) {
+            setError(
+                {
+                    title: 'something is wrong',
+                    message: 'please enter all requirements!'
+                })
             return;  
         };
         props.onAddUser(enteredFullName, enteredEmail, enteredPassword)
@@ -30,11 +39,16 @@ const UserForm = (props) => {
         setEnteredPassword(event.target.value);
         
     };
+    const errorHandler = () => { 
+        setError(null)
+    }
 
 
         
       
     return <div>
+        {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
+       
         <form onSubmit={formHandler}>
             <div>
             <label htmlFor="fullname">Full Name:</label>
@@ -48,9 +62,10 @@ const UserForm = (props) => {
             <label htmlFor="password">Password:</label>
                 <input id="password" type="password" value={enteredPassword} onChange={passwordHandler}/>
             </div>
-            <button type="submit">submit</button>
+            <Button type="submit">submit</Button>
 
-    </form>
+            </form>
+            
 </div>
 
 };

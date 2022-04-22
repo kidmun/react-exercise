@@ -31,6 +31,7 @@ function App() {
       <h1>Welcome to registration</h1>
     
       <UserForm onAddUser={userListHandler} /> 
+      <br/>
       <DisplayUser users={userList}/>
     </div>
   );
